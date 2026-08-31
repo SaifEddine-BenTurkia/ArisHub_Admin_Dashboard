@@ -51,13 +51,12 @@ docker run --rm -p 8080:80 arishub-admin
 
 The container includes SPA routing, security headers, caching, and `/healthz`.
 
-## Production security checklist
+## Cloudflare Pages deployment
 
-- Point `admin.arishub.site` to the VPS through Cloudflare.
-- Protect the hostname with Cloudflare Access before making it public.
-- Use HTTPS only and include `https://admin.arishub.site` in backend `CORS_ORIGINS`.
-- Use a unique `ADMIN_JWT_SECRET` and a strong seeded administrator password.
-- Never place backend secrets in any `VITE_*` variable; browser variables are public.
-- Keep the dashboard on an internal/admin-only deployment pipeline.
+The primary production host is `https://admin.arishub.site`. Cloudflare Pages builds the private GitHub repository with `npm run build`, publishes `dist`, and injects the public variable `VITE_API_BASE_URL=https://api.arishub.site`.
+
+Cloudflare Access must protect the whole hostname with an exact-email Allow policy. Access does not replace the dashboard's NestJS administrator login. See [the deployment runbook](docs/cloudflare-pages-deployment-runbook.md) for first deployment, verification, and rollback.
+
+The backend must include `https://admin.arishub.site` in `CORS_ORIGINS`, use a unique `ADMIN_JWT_SECRET`, and retain a strong administrator password. Never place backend secrets in a `VITE_*` variable because browser variables are public.
 
 The JWT is stored in `sessionStorage`, so closing the browser tab removes the local session. The API remains responsible for authorization on every request.
