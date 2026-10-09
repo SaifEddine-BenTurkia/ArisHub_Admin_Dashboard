@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BriefcaseBusiness, ChevronLeft, Gauge, LayoutDashboard, LogOut, Menu, RefreshCw, ShieldCheck, Users, WalletCards, X } from 'lucide-react';
+import { BriefcaseBusiness, ChevronLeft, Flag, Gauge, LayoutDashboard, LogOut, Menu, RefreshCw, ShieldCheck, Users, WalletCards, X } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
@@ -10,6 +10,7 @@ const navigation = [
   { to: '/recharges', label: 'Recharges', icon: WalletCards },
   { to: '/clients', label: 'Clients', icon: Users },
   { to: '/jobs', label: 'Missions', icon: BriefcaseBusiness },
+  { to: '/reports', label: 'Signalements', icon: Flag },
 ];
 
 export function Layout() {

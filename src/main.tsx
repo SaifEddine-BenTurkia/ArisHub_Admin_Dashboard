@@ -14,6 +14,7 @@ import { PerformancePage } from './pages/PerformancePage';
 import { ProviderDetailPage } from './pages/ProviderDetailPage';
 import { ProvidersPage } from './pages/ProvidersPage';
 import { RechargesPage } from './pages/RechargesPage';
+import { ReportsPage } from './pages/ReportsPage';
 import './styles.css';
 
 function ProtectedLayout() {
@@ -35,6 +36,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path="clients/:id" element={<ClientDetailPage />} />
       <Route path="jobs" element={<JobsPage />} />
       <Route path="jobs/:id" element={<JobDetailPage />} />
+      <Route path="reports" element={<ReportsPage />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes></AuthProvider></BrowserRouter></StrictMode>,

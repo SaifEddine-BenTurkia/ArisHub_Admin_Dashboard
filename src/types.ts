@@ -174,3 +174,33 @@ export interface UnansweredJobs {
   thresholdMinutes: number;
   data: UnansweredJob[];
 }
+
+export type ReportStatus = 'pending' | 'investigating' | 'resolved' | 'dismissed';
+
+export interface ReportPerson {
+  id: string;
+  type: 'client' | 'provider';
+  fullName: string;
+  phoneNumber: string;
+}
+
+export interface Report {
+  id: string;
+  status: ReportStatus;
+  reason: string;
+  details: string | null;
+  createdAt: string;
+  targetType: 'job' | 'user' | 'message' | string;
+  targetId: string;
+  reporterId: string;
+  reporterType: string;
+  /** Null when the account was deleted since. */
+  reporter: ReportPerson | null;
+  /** The person reported, when the report is about a user. */
+  reportedUser: ReportPerson | null;
+  job: { id: string; title: string; status: string } | null;
+}
+
+export interface ReportList extends Paginated<Report> {
+  counts: Record<ReportStatus, number>;
+}
