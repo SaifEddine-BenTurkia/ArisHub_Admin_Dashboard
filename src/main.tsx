@@ -10,6 +10,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { JobDetailPage } from './pages/JobDetailPage';
 import { JobsPage } from './pages/JobsPage';
 import { LoginPage } from './pages/LoginPage';
+import { PerformancePage } from './pages/PerformancePage';
 import { ProviderDetailPage } from './pages/ProviderDetailPage';
 import { ProvidersPage } from './pages/ProvidersPage';
 import { RechargesPage } from './pages/RechargesPage';
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
     <Route path="/login" element={<LoginPage />} />
     <Route element={<ProtectedLayout />}>
       <Route index element={<DashboardPage />} />
+      <Route path="performance" element={<PerformancePage />} />
       <Route path="providers" element={<ProvidersPage />} />
       <Route path="providers/:id" element={<ProviderDetailPage />} />
       <Route path="recharges" element={<RechargesPage />} />

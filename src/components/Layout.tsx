@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { BriefcaseBusiness, ChevronLeft, LayoutDashboard, LogOut, Menu, RefreshCw, ShieldCheck, Users, WalletCards, X } from 'lucide-react';
+import { BriefcaseBusiness, ChevronLeft, Gauge, LayoutDashboard, LogOut, Menu, RefreshCw, ShieldCheck, Users, WalletCards, X } from 'lucide-react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 const navigation = [
   { to: '/', label: 'Vue d’ensemble', icon: LayoutDashboard, end: true },
+  { to: '/performance', label: 'Performance', icon: Gauge },
   { to: '/providers', label: 'Prestataires', icon: ShieldCheck },
   { to: '/recharges', label: 'Recharges', icon: WalletCards },
   { to: '/clients', label: 'Clients', icon: Users },

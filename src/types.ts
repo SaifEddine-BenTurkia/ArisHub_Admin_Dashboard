@@ -133,3 +133,44 @@ export interface DashboardOverview {
   totalPreRegistrations: number;
   generatedAt: string;
 }
+
+export interface FunnelRow {
+  label: string;
+  posted: number;
+  withOffer: number;
+  /** Requests posted at least an hour ago, the only ones the one-hour target can judge. */
+  matured: number;
+  offerWithinHour: number;
+  medianMinutesToFirstOffer: number | null;
+  hired: number;
+  completed: number;
+  cancelled: number;
+}
+
+export interface MarketplaceFunnel {
+  days: number;
+  since: string;
+  generatedAt: string;
+  overall: FunnelRow;
+  byGovernorate: FunnelRow[];
+  byCategory: FunnelRow[];
+}
+
+export interface UnansweredJob {
+  id: string;
+  title: string;
+  category: string | null;
+  gouvernement: string | null;
+  delegation: string | null;
+  requestType: 'open' | 'direct' | string;
+  clientName: string;
+  createdAt: string;
+  minutesWaiting: number;
+  targetProvider: { fullName: string } | null;
+}
+
+export interface UnansweredJobs {
+  generatedAt: string;
+  thresholdMinutes: number;
+  data: UnansweredJob[];
+}
