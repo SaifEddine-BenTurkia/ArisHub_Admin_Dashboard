@@ -204,3 +204,37 @@ export interface Report {
 export interface ReportList extends Paginated<Report> {
   counts: Record<ReportStatus, number>;
 }
+
+export type NotificationAudience = 'all' | 'clients' | 'providers';
+/** Which providers a broadcast reaches. */
+export type ProviderStatusFilter = 'approved' | 'pending' | 'all';
+
+export interface AudiencePreview {
+  users: number;
+  clients: number;
+  providers: number;
+  /** People with at least one phone registered for push notifications. */
+  withDevice: number;
+}
+
+export interface NotificationRecipient {
+  id: string;
+  type: 'client' | 'provider';
+  fullName: string;
+  phoneNumber: string;
+  profileImage: string | null;
+  /** Null for clients. */
+  isApproved: boolean | null;
+  devices: number;
+}
+
+export interface NotificationDelivery {
+  /** People it was saved for; everyone sees it in the app's notification list. */
+  recipients: number;
+  recipientsWithDevice: number;
+  devices: number;
+  devicesReached: number;
+  devicesFailed: number;
+  /** False when push is not configured on the server: nothing rang. */
+  pushEnabled: boolean;
+}

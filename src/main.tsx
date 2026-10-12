@@ -10,6 +10,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { JobDetailPage } from './pages/JobDetailPage';
 import { JobsPage } from './pages/JobsPage';
 import { LoginPage } from './pages/LoginPage';
+import { NotificationsPage } from './pages/NotificationsPage';
 import { PerformancePage } from './pages/PerformancePage';
 import { ProviderDetailPage } from './pages/ProviderDetailPage';
 import { ProvidersPage } from './pages/ProvidersPage';
@@ -37,6 +38,7 @@ createRoot(document.getElementById('root')!).render(
       <Route path="jobs" element={<JobsPage />} />
       <Route path="jobs/:id" element={<JobDetailPage />} />
       <Route path="reports" element={<ReportsPage />} />
+      <Route path="notifications" element={<NotificationsPage />} />
     </Route>
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes></AuthProvider></BrowserRouter></StrictMode>,
