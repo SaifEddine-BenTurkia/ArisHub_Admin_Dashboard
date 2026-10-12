@@ -10,3 +10,5 @@ export const initials = (name?: string) =>
 export function getErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : 'Une erreur inattendue est survenue.';
 }
+
+export const formatNumber = (value: number) => new Intl.NumberFormat('fr-TN').format(value);
