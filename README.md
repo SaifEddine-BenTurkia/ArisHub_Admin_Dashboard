@@ -35,12 +35,11 @@ If other browser applications also use the API, provide a comma-separated list.
 
 ## Production build
 
-```powershell
-$env:VITE_API_BASE_URL = "https://api.arishub.site"
+```
 npm run build
 ```
 
-The generated static application is in `dist/`.
+The generated static application is in `dist/`. The build reads `.env.production`, which points at `https://api.arishub.site` and wins over `.env.local` (the `http://localhost:3000` used by `npm run dev`), so a production build never targets your own machine. A `VITE_API_BASE_URL` set in the shell still overrides both.
 
 ## Docker build
 
@@ -53,7 +52,11 @@ The container includes SPA routing, security headers, caching, and `/healthz`.
 
 ## Cloudflare Pages deployment
 
-The primary production host is `https://admin.arishub.site`. Cloudflare Pages builds the private GitHub repository with `npm run build`, publishes `dist`, and injects the public variable `VITE_API_BASE_URL=https://api.arishub.site`.
+The primary production host is `https://admin.arishub.site`, served by the Cloudflare Pages project `arishub-admin-dashboard`. The project is not connected to GitHub: a push publishes nothing. Publish by hand from the repository root, after `npm run build`:
+
+```
+npx --yes wrangler@3 pages deploy dist --project-name arishub-admin-dashboard --branch main
+```
 
 Cloudflare Access must protect the whole hostname with an exact-email Allow policy. Access does not replace the dashboard's NestJS administrator login. See [the deployment runbook](docs/cloudflare-pages-deployment-runbook.md) for first deployment, verification, and rollback.
 
